@@ -19,7 +19,8 @@ if expr "$2" : "[0-9]*$" >&/dev/null; then
 
   for i in `seq $2`
   do
-    echo "${i}:" | tee sindan-sh-time-log/time-log-$_now_date.output
+    touch sindan-sh-time-log/time-log-$_now_date.output
+    echo "${i}:" | tee -a sindan-sh-time-log/time-log-$_now_date.output
     _run_time=$(date +"%Y-%m-%d-%H-%M")
     echo "Do : time sudo $HOME/sindan-client/linux/sindan.sh" | tee -a sindan-sh-time-log-$_now_date/time-log-$_now_date.output
     ( time ( sudo $HOME/sindan-client/linux/sindan.sh >> sindan-sh-time-log/log-$_now_date/log-${1}-$_run_time.log)) 2>> sindan-sh-time-log/time-log-$_now_date.output
