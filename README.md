@@ -5,7 +5,7 @@ SINDAN Test Tools
 
 ``` sh
 cd sindan-time-checker
-./sindan-time-checker.sh linux NUM"
+./sindan-time-checker.sh linux 5
 ```
 
 
