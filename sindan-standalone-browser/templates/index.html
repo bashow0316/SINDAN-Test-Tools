@@ -2,29 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>JSON Data</title>
+    <title>SINDAN Standalone Browser</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="text-center">JSON Data</h1>
+    <h1 class="text-center">Data: {{ index }}</h1>
+      <table class="table">
+        <tbody>
+          {% for device in devices %}
+          <tr>
+            <th>{{ device }}</th>
+          </tr>
+          {% endfor %}          
+        </tbody>
+      </table>
       <table class="table">
         <tbody>
           <tr>
-            {% for key in data[1].keys() %}
-              <th>{{ key }}</th>
-            {% endfor %}
+          {% for key in data[0][1].keys() %}
+            <th>{{ key }}</th>
+          {% endfor %}
           </tr>
         </tbody>
-        {% for idx, contents in data.items() %}
-          <tbody>
-            <tr>
-              {% for value in contents.values() %}
-                <td>{{ value }}</td>
-              {% endfor %}
-            </tr>
-          </tbody>
+        {% for items in data %}
+        <tbody>
+          <tr>
+          {% for value in items[1].values() %}
+            <td>{{ value }}</td>
           {% endfor %}
+          </tr>
+        </tbody>
+        {% endfor %}
       </table>
 </div>
 </body>
