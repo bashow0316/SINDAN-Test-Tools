@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">JSON Data</h1>
+      <table class="table">
+        <tbody>
+          <tr>
+            {% for key in data[1].keys() %}
+              <th>{{ key }}</th>
+            {% endfor %}
+          </tr>
+        </tbody>
+        {% for idx, contents in data.items() %}
+          <tbody>
+            <tr>
+              {% for value in contents.values() %}
+                <td>{{ value }}</td>
+              {% endfor %}
+            </tr>
+          </tbody>
+          {% endfor %}
+      </table>
+</div>
+</body>
+</html>
