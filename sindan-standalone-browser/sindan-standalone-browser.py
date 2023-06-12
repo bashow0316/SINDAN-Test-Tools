@@ -1,12 +1,22 @@
 from flask import Flask, render_template
 import os
+import sys
 import json
+
+args = sys.argv
+
+if (len(args) != 2):
+    print("python3 sindan-standalone-browser.py linux")
+    print("or")
+    print("python3 sindan-standalone-browser.py masos")
+    exit(1)
+
 
 app = Flask(__name__)
 
 @app.route('/')
 def json_files():
-    directory = os.environ['HOME']+'/sindan-client/macos/log/'
+    directory = os.environ['HOME']+'/sindan-client/'+ args[1] +'/log/'
     files = os.listdir(directory)
 
     keys= ["layer", "log_group", "log_type", "log_campaign_uuid", "result", "target", "detail", "occurred_at"]
