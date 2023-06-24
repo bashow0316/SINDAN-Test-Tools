@@ -8,7 +8,9 @@ args = sys.argv
 if (len(args) != 2):
     print("python3 sindan-standalone-browser.py linux")
     print("or")
-    print("python3 sindan-standalone-browser.py masos")
+    print("python3 sindan-standalone-browser.py macos")
+    print("or")
+    print("python3 sindan-standalone-browser.py /dir")
     exit(1)
 
 
@@ -16,7 +18,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def json_files():
-    directory = os.environ['HOME']+'/sindan-client/'+ args[1] +'/log/'
+
+    if ((args[1] == 'linux') or (args[1] == 'macos')):
+        directory = os.environ['HOME']+'/sindan-client/'+ args[1] +'/log/'
+    else:
+        directory = args[1]
+
     files = os.listdir(directory)
 
     keys= ["layer", "log_group", "log_type", "log_campaign_uuid", "result", "target", "detail", "occurred_at"]
@@ -46,7 +53,7 @@ def json_files():
                 log_type = line[idx_log_type + 14 : idx_log_campaign_uuid - 3]
                 
                 idx_result = line.find("\"result\" :")
-                log_campaign_uuid = line[idx_log_campaign_uuid + 24 : idx_result - 3]
+                log_campaign_uuid = line[idx_log_campaign_uuid + 23 : idx_result - 3]
 
                 idx_target = line.find("\"target\" :")
                 result = line[idx_result + 12 : idx_target - 3]
